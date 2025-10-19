@@ -3,6 +3,7 @@
 //  WeSplit
 //
 //  Created by Rob Downing on 10/16/25.
+//  Instructions from Paul Hudson's 100 Days of SwiftUI
 //
 
 import SwiftUI
