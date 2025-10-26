@@ -5,7 +5,6 @@
 //  Created by Rob Downing on 10/16/25.
 //  Instructions from Paul Hudson's 100 Days of SwiftUI
 //
-
 import SwiftUI
 
 struct ContentView: View {
@@ -47,25 +46,29 @@ struct ContentView: View {
                     }
                 }
 
-                // Tip picker on a new screen, 0%...100%
                 Section("Tip") {
                     Picker("Tip Percentage", selection: $tipPercentage) {
                         ForEach(0..<21) { step in
                             let pct = step * 5
-                            Text(pct, format: .percent).tag(pct)
+                            Text(pct, format: .percent)
+                                .foregroundStyle(pct == 0 ? .red : .primary) // WTF shorthand
+                                .tag(pct)
                         }
                     }
                 }
 
-
                 Section("Amount per person") {
-                    Text(totalPerPerson,
-                         format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                    Text(
+                        totalPerPerson,
+                        format: .currency(code: Locale.current.currency?.identifier ?? "USD")
+                    )
                 }
 
                 Section("Grand total (amount + tip)") {
-                    Text(grandTotal,
-                         format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                    Text(
+                        grandTotal,
+                        format: .currency(code: Locale.current.currency?.identifier ?? "USD")
+                    )
                 }
             }
             .navigationTitle("WeSplit")
@@ -74,10 +77,9 @@ struct ContentView: View {
                     Button("Done") { amountIsFocused = false }
                 }
             }
-            .pickerStyle(.navigationLink) // makes pickers drill-in
+            .pickerStyle(.navigationLink)
         }
     }
 }
 
 #Preview { ContentView() }
-
